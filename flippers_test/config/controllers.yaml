@@ -1,0 +1,48 @@
+markhor:
+    # Publish all joint states -----------------------------------
+    joints_update:
+      type: joint_state_controller/JointStateController
+      publish_rate: 100
+    
+    # Position Controllers ---------------------------------------
+    flipper_fl_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: flipper_fl_j
+      pid: {p: 800.0, i: 0.0, d: 5.0, i_clamp_min: -130.0, i_clamp_max: 130, antiwindup: True}
+
+    flipper_fr_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: flipper_fr_j
+      pid: {p: 800.0, i: 0.0, d: 5.0, i_clamp_min: -130.0, i_clamp_max: 130, antiwindup: True}
+
+    flipper_rl_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: flipper_rl_j
+      pid: {p: 800.0, i: 0.0, d: 5.0, i_clamp_min: -130.0, i_clamp_max: 130, antiwindup: True}
+
+    flipper_rr_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: flipper_rr_j
+      pid: {p: 800.0, i: 0.0, d: 5.0, i_clamp_min: -130.0, i_clamp_max: 130, antiwindup: True}
+
+
+    # Velocity Controllers ---------------------------------------
+    flipper_fl_position_controller:
+      type: effort_controllers/JointVelocityController
+      joint: flipper_fl_j
+      pid: {p: 100.0, i: 100, d: 0.0, i_clamp_min: -255.0, i_clamp_max: 255, antiwindup: True}
+
+    flipper_fr_position_controller:
+      type: effort_controllers/JointVelocityController
+      joint: flipper_fr_j
+      pid: {p: 100.0, i: 100, d: 0.0, i_clamp_min: -255.0, i_clamp_max: 255, antiwindup: True}
+
+    flipper_rl_position_controller:
+      type: effort_controllers/JointVelocityController
+      joint: flipper_rl_j
+      pid: {p: 100.0, i: 100, d: 0.0, i_clamp_min: -255.0, i_clamp_max: 255, antiwindup: True}
+
+    flipper_rr_position_controller:
+      type: effort_controllers/JointPositionController
+      joint: flipper_rr_j
+      pid: {p: 100.0, i: 100, d: 0.0, i_clamp_min: -255.0, i_clamp_max: 255, antiwindup: True}

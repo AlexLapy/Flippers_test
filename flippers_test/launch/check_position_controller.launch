@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+    
+  <param name="position" value="1"/>
+  <param name="velocity" value="0"/>
+
+
+  <rosparam file="$(find flippers_test)/config/controllers.yaml" command="load"/>
+  <rosparam file="$(find flippers_test)/config/joint_limits.yaml" command="load"/>
+   
+  <arg name="model" default="$(find flippers_test)/urdf/single_joint_actuator.urdf.xacro"/>
+  <arg name="gui" default="true" />
+  
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+  
+  <node name="flippers_node" pkg="flippers_test" type="flippers_node" output="screen"/>
+  
+  <node name="subscriber_py" pkg="flippers_test" type="joints_receive_from_arduino.py" output="screen"/> 
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+  </node>
+
+<!--
+  <node name="rviz" pkg="rviz" type="rviz"/>
+-->
+    
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="
+        	/single_joint_actuator/joints_update
+            /single_joint_actuator/joint1_position_controller
+        "/>
+</launch>
